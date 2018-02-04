@@ -11,3 +11,6 @@
 
 效果如下：
 ![./demo.png](demo.png)
+
+
+ref: https://github.com/ageitgey/face_recognition
