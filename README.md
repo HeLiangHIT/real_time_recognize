@@ -12,5 +12,11 @@
 效果如下：
 ![./demo.png](demo.png)
 
+# TODO
++ 摄像头创建人脸数据库时也框选出选定的第一个人脸，实现更好的用户交互
++ 尝试用这个程序控制MAC人脸解锁，免去输入密码
++ 尝试打包成MAC的APP
+
+
 
 ref: https://github.com/ageitgey/face_recognition
