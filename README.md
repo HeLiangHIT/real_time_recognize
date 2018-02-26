@@ -10,7 +10,7 @@
 + `python run_recognize.py` 同样可以使用 --dir 参数指定人脸数据库目录，默认同上。
 
 效果如下：
-![./demo.png](demo.png)
+![./demo.gif](demo.gif)
 
 
 ref: https://github.com/ageitgey/face_recognition
