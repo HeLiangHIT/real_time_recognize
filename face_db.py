@@ -15,12 +15,14 @@ Options:
   --dir=dir         face info save dir. *default: $HOME/Pictures/head/
 """
 
-
+import platform
 import numpy
 import cv2
 import face_recognition
 import os
 from docopt import docopt
+
+sysstr = platform.system() # Windows  Linux  
 
 
 def list_file(filedir, sufix=None):
@@ -103,10 +105,13 @@ def save_photo_face(face_img, name, dirname):
 if __name__ == '__main__':
     arguments = docopt(__doc__, version="face_db 0.0.1")
     if not arguments["--dir"]:
-        home = os.environ['HOME']
+        home = os.path.expanduser('~') # os.environ['HOME']
         arguments["--dir"] = "%s/Pictures/head/" % home
         print("use default dir %s to save face db!" % arguments["--dir"])
-    os.system("mkdir -p %s" % arguments["--dir"])
+    try:
+        os.makedirs(arguments["--dir"])
+    except FileExistsError:
+        pass
     face_encode, face_img = encode_face(arguments["--image"])
     save_photo_face(face_img, arguments["--name"], arguments["--dir"])
     save_face_db(face_encode, arguments["--name"], arguments["--dir"])
