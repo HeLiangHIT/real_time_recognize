@@ -18,7 +18,7 @@ from docopt import docopt
 from face_db import *
 arguments = docopt(__doc__, version="real time face recognize 0.0.1")
 if not arguments["--dir"]:
-    home = os.environ['HOME']
+    home = os.path.expanduser('~') # os.environ['HOME']
     arguments["--dir"] = "%s/Pictures/head/" % home
     print("use default dir %s to save face db!" % arguments["--dir"])
 known_face_encodings, known_face_names = load_faces_db(arguments["--dir"])
