@@ -28,7 +28,7 @@ sysstr = platform.system() # Windows  Linux
 def list_file(filedir, sufix=None):
     # 根据输入的后缀来列举文件夹中的文件
     file_list = os.listdir(filedir)
-    file_list = [filedir + f for f in file_list] # add path for files
+    file_list = [os.path.join(filedir, f) for f in file_list] # add path for files
     if sufix is not None:
         ret_list = [f for f in file_list if f.endswith(sufix)]
         return ret_list
@@ -97,7 +97,7 @@ def save_face_db(face_encode, name, dirname):
     numpy.save(filename, face_encode)
 
 
-def save_photo_face(face_img, name, dirname):
+def save_face_photo(face_img, name, dirname):
     filename = '%s/%s.jpg' % (dirname, name)
     cv2.imwrite(filename, face_img)
 
@@ -113,5 +113,5 @@ if __name__ == '__main__':
     except FileExistsError:
         pass
     face_encode, face_img = encode_face(arguments["--image"])
-    save_photo_face(face_img, arguments["--name"], arguments["--dir"])
+    save_face_photo(face_img, arguments["--name"], arguments["--dir"])
     save_face_db(face_encode, arguments["--name"], arguments["--dir"])
