@@ -16,6 +16,7 @@
 ![./demo.gif](demo.gif)
 
 # TODO
+
 [*] 增加其它人脸实时操作逻辑，例如装饰等。当前增加了[烟头和墨镜](https://github.com/tomoncle/face-detection-induction-course)，后续可以考虑增加更多。
 [ ] 增加异常情况处理：保存数据库时没有人脸图像报错...
 [ ] 摄像头创建人脸数据库时也框选出选定的第一个人脸，实现更好的用户交互
