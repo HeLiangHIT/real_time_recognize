@@ -26,7 +26,7 @@ sysstr = platform.system() # Windows  Linux
 
 
 def list_file(filedir, sufix=None):
-    # 根据输入的后缀来列举文件夹中的文件
+    # 根据输入的后缀来列举文件夹中的文件, 也许可以使用 glob.glob(os.path.join(filedir, "*.jpg")) 精简
     file_list = os.listdir(filedir)
     file_list = [os.path.join(filedir, f) for f in file_list] # add path for files
     if sufix is not None:
