@@ -2,3 +2,4 @@ numpy==1.12.1
 docopt==0.6.2
 face_recognition==1.0.0
 opencv_python==3.4.0.12
+imutils==0.5.4

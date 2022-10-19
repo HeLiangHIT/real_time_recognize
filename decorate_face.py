@@ -6,8 +6,8 @@
 """
 查找人脸并在此基础上装饰人脸
 Usage:
-  run_recongnize.py [--deco=deco]
-  run_recongnize.py --version
+  decorate_face.py [--deco=deco]
+  decorate_face.py --version
 Options:
   --deco=deco         face info save deco. *default: cigarette
 """
