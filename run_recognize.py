@@ -9,7 +9,7 @@ Usage:
   run_recongnize.py [--dir=dir]
   run_recongnize.py --version
 Options:
-  --dir=dir         face info save dir. *default: $HOME/Pictures/head/
+  --dir=dir         face info save dir. *default: .data/face_db
 """
 
 import cv2
@@ -18,8 +18,7 @@ from docopt import docopt
 from face_db import *
 arguments = docopt(__doc__, version="real time face recognize 0.0.1")
 if not arguments["--dir"]:
-    home = os.path.expanduser('~') # os.environ['HOME']
-    arguments["--dir"] = "%s/Pictures/head/" % home
+    arguments["--dir"] = ".data/face_db"
     print("use default dir %s to save face db!" % arguments["--dir"])
 known_face_encodings, known_face_names = load_faces_db(arguments["--dir"])
 # known_face_encodings, known_face_names = load_faces_img(arguments["--dir"])

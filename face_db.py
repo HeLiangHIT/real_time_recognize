@@ -12,7 +12,7 @@ Usage:
 Options:
   --name=name       select name. [default: unkown]
   --image=image     image path or use camera.
-  --dir=dir         face info save dir. *default: $HOME/Pictures/head/
+  --dir=dir         face info save dir. *default: .data/face_db
 """
 
 import platform
@@ -74,7 +74,7 @@ def load_faces_db(dirname):
     face_encodes = []
     face_names = []
     for filename in list_file(dirname, '.npy'):
-        face_names.append(filename.split("/")[-1].split(".")[0])
+        face_names.append(filename.split(os.path.sep)[-1].split(".")[0])
         face_encode = numpy.load(filename)
         face_encodes.append(face_encode)
     return face_encodes, face_names
@@ -85,7 +85,7 @@ def load_faces_img(dirname):
     face_encodes = []
     face_names = []
     for img_file in list_file(dirname, '.jpg'):
-        face_names.append(img_file.split("/")[-1].split(".")[0])
+        face_names.append(img_file.split(os.path.sep)[-1].split(".")[0])
         face_encode = encode_face(img_file)
         face_encodes.append(face_encode)
     return face_encodes, face_names
@@ -93,20 +93,19 @@ def load_faces_img(dirname):
 
 def save_face_db(face_encode, name, dirname):
     # 人脸特征保存下来
-    filename = '%s/%s.npy' % (dirname, name)
+    filename = os.path.join(dirname, '%s.npy' % name)
     numpy.save(filename, face_encode)
 
 
 def save_face_photo(face_img, name, dirname):
-    filename = '%s/%s.jpg' % (dirname, name)
+    filename = os.path.join(dirname, '%s.jpg' % name)
     cv2.imwrite(filename, face_img)
 
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version="face_db 0.0.1")
     if not arguments["--dir"]:
-        home = os.path.expanduser('~') # os.environ['HOME']
-        arguments["--dir"] = "%s/Pictures/head/" % home
+        arguments["--dir"] = ".data/face_db"
         print("use default dir %s to save face db!" % arguments["--dir"])
     try:
         os.makedirs(arguments["--dir"])
